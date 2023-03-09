@@ -11,7 +11,7 @@
         </head>
         
         <img src='uber_logo.png'><br>
-        
+
             <body>
                     <p>This analysis will be focused on extracting insights from data collected in New York by rides company Uber.<br> 
                         analysis will be focused on central elements such as highest number of rides by month, week, weekday,<br> 
@@ -28,14 +28,14 @@
 
                 <img src='sof.jpeg'><br>
                 <br>
-                <div style="background-color:#dedede;">
-                        <code>
+                <div border: 1px solid #333333;width: 200px;height: 100px; style="background-color:#dedede;">
+                        <code style="background-color:#dedede;">
                             #Loading libraries
                             library(tidyverse)<br>
                             library(lubridate)<br>
                             library(scales)<br>
                             library(ggcharts)<br>
-                        </code>
+                        </code style="background-color:#dedede;">
                 </div>
                     </body>
             <body>
@@ -43,7 +43,7 @@
                     As we want to treat the datasets as a single dataset for more efficient analysis, we will then bind <br>
                     them together into a single dataframe for further analysis.</p>
                 <div style="background-color:#dedede;">
-                    <code>
+                    <code style="width = 30px; background-color:#dedede;">
                         #Import datasets<br>
                         apr <- read_csv("1uber-raw-data-apr14.csv")<br>
                         may <- read_csv("2uber-raw-data-may14.csv")<br>
@@ -70,7 +70,7 @@
                     that is, week days and months. <br>
                     The days of the month will be expressed in an integer format, that is to represent the 1-30/31 days in a month</p>
                 <div style="background-color:#dedede;">    
-                    <code>
+                    <code style="background-color:#dedede;">
                         #Convert Date/Time column to proper date time format<br>
                         df$Date_Time<-as.POSIXct(<br>
                         df$`Date/Time`,format="%m/%d/%Y %H:%M:%S"<br>
@@ -90,13 +90,13 @@
                         format(df$Date_Time,"%H")<br>
                         )<br>
                         df<br>
-                    </code>
+                    </code style="background-color:#dedede;">
                 </div>
             </body>    
             <body>
                 <p> In our first item of interest, we would like to visualize the number of trips per month to see the months with the highest and lowest trips.</p>
                 <div style="background-color:#dedede;">   
-                        <code>
+                        <code style="background-color:#dedede;">
                             #Trips by Month<br>
                             trips_month <- df%>%<br>
                             group_by(Month)%>%<br>
@@ -110,8 +110,13 @@
                             theme_classic()<br>
                             <br>
                             trips_month<br>
-                        </code>
+                        </code style="background-color:#dedede;">
                     </div>
+                        <div>
+                             <img src = "rides_per_month.png"> 
+                        </div>
+                        
+                    
                 <p> As we can see, the total number of rides gradually increased as the year went by. April had the lowest number of rides<br> 
                     and in September, the highest rides total was recorded surpassing 1 million rides. </p>   
             </body>
@@ -121,7 +126,7 @@
                     a lot of rides or the fewest number of rides? Do people book more trips on say Friday than any day of the week? Or is it Monday?<br>
                      Enough suspense! Let's find out!</p>
                 <div style="background-color:#dedede;">
-                     <code>
+                     <code style="background-color:#dedede;" style="width:1000px;height:100px;background-color:#dedede;">
                         #Trips by Weekday<br>
                         trips_wday <- df%>%<br>
                         group_by(Week_Day)%>%<br>
@@ -135,8 +140,11 @@
                         scale_y_continuous(labels=comma)+<br>
                         theme_classic()<br>
                         trips_wday<br>
-                    </code>
+                    </code style="background-color:#dedede;">
                 </div>
+                <div>
+                    <img src = "rides_per_day.png"> 
+               </div>
                 <p> Interestingly, the week day with the highest number of rides was Thursday. <br>
                     Friday comes in close second followed by Wednesday. An interesting pattern the visual above shows us is that,<br>
                      the total number of rides per day peak from Wednesday to Friday, <br>
@@ -147,8 +155,8 @@
                 <p> Okay now time for some more deeper insights. 
                     Does our data have anything else to tell us? We have found the month and day of the week with the highest number of trips<br>
                      but what about the hour of the day in which most rides happen in? Will that reveal something else?</p>
-                <div style="background-color:#dedede;">
-                    <code>
+                <div >
+                    <code style="background-color:#dedede;" style="background-color:#dedede;">
                         #Trips by hour<br>
                         trips_hour <- df%>%<br>
                         group_by(Hour)%>%<br>
@@ -164,6 +172,9 @@
                         trips_hour<br>
                     </code>
                 </div>
+                <div>
+                    <img src = "rides_per_hour.png"> 
+               </div>
                 <p>From our above visual, we definitely have some even more interesting insights we have uncovered.<br>
                      To begin with if we group our data into two parts; 7:00 - 9:00 and 16:00 - 18:00, we can presume that, more New Yorkers use <br>
                      Uber in their evening commute from work than to work. 17:00 recorded more trips than any other hour and we can see a steady decline <br>
@@ -174,7 +185,7 @@
             <body>
                 <p>We will now want to check the pattern of weekend trips against working day trips to check for any pattern variation.</p>
                 <div style="background-color:#dedede;">  
-                    <code>
+                    <code style="background-color:#dedede;">
                             #Working Day Trips<br>
                             wkd_trips <- df %>%<br>
                             select(Week_Day,Hour)%>%<br>
@@ -205,8 +216,14 @@
                             scale_y_continuous(labels=comma)+<br>
                             theme_classic()<br>
                             wday_trips<br>
-                        </code>
+                        </code style="background-color:#dedede;">
                 </div>
+                <div>
+                    <img src = "weekday_hourly_rides.png"> 
+               </div>
+               <div>
+                <img src = "weekday_hourly_rides.png"> 
+           </div>
                 <p> Hmm... interesting. The visuals above show us some difference in ride patterns for weekends. <br>
                     First of, the number of rides on weekends is lower than that of weekdays and the number of rides per hour <br>
                     for weekends peak earlier than that for working days. The pattern of working days show a steady but sure <br>
@@ -220,7 +237,7 @@
 
             <body>
                 <div style="background-color:#dedede;">
-                    <code>
+                    <code style="background-color:#dedede;">
                         #Per Base<br>
                         base_tot <- df%>%<br>
                         select(Month,Base)%>%<br>
@@ -236,8 +253,11 @@
                         theme_classic()<br>
                         <br>
                         base_tot<br>
-                    </code>
+                    </code style="background-color:#dedede;">
                 </div>
+                <div>
+                    <img src = "rides_per_base.png"> 
+               </div>
                     <p> B02617 recorded the highest number of total rides with 1.45 million rides taking place from there. <br>
                         Base B02512 in comparison had the lowest number of rides with only 205,673 rides taking place in the base. <br>
                         Base B02617 had a total seven times larger than Base B02512.</p>
@@ -245,7 +265,7 @@
 
             <body>
                 <div style="background-color:#dedede;">
-                    <code >
+                    <code style="background-color:#dedede;" >
                         #Rides by Day & Month<br>
                         m_d_rides <- df%>%<br>
                         select(Month,Week_Day)%>%<br>
@@ -261,8 +281,11 @@
                         theme_classic()<br>
                         <br>
                         m_d_rides<br>
-                    </code>
-                </div>    
+                    </code style="background-color:#dedede;">
+                </div>  
+                    <div>
+                        <img src = "rides_by_day_per_month.png"> 
+                    </div>  
                     <p>As displayed here, September has the highest number of rides for each weekday out of the other months. <br>
                         It is also interesting to note that, July, despite having a comparatively lower number of total rides than<br>
                          August, ranks next best for total number of rides on Tuesdays, Wednesdays and Thursdays. <br>
@@ -270,7 +293,7 @@
             </body>
             <body>
                 <div style="background-color:#dedede;">
-                    <code>
+                    <code style="background-color:#dedede;">
                         #Rides by Base<br>
                         rides_base <- df%>%<br>
                         select(Base,Month)%>%<br>
@@ -285,8 +308,11 @@
                         scale_y_continuous(labels=comma)+<br>
                         theme_classic()<br>
                         rides_base<br>
-                    </code>
+                    </code style="background-color:#dedede;">
                 </div>
+                <div>
+                    <img src = "rides_by_base_per_month.png"> 
+               </div>
                     <p>Base B02617, the base with the highest number of total rides was first in total rides for the months July, August and September, with 310,160, 355,803 & 377,695 total rides respectively. <br>
                         There was a gradual increase in the number of rides from April to September.<br> 
                         Base B02598 also recorded the highest number of rides for the months May and June with 260,549 and 242,975 respectively. <br>
