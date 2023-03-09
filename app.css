@@ -1,5 +1,9 @@
 @charset "utf-8";
+body {
+  background-color: #36465d;
+}
+
 .courier {
- font-family: Courier;
- color: #005CB9;
+  font-family: Courier;
+  color: #005cb9;
 }
